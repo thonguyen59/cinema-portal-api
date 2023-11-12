@@ -15,4 +15,13 @@ public class Cinema {
     @GeneratedValue(generator = "CINEMA_ID_GENERATOR")
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
+
+    @Column(name = "CODE", length = 255)
+    private String code;
+
+    @Column(name = "NAME", length = 255)
+    private String name;
+
+    @Column(name = "LOCATION", length = 255)
+    private String location;
 }

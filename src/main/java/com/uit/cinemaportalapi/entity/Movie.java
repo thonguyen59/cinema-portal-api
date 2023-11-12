@@ -25,8 +25,11 @@ public class Movie {
     @Column(name = "CATEGORY", length = 255)
     private String category;
 
-    @Column(name = "TRAILER_URL", length = 255)
+    @Column(name = "TRAILER_URL")
     private String trailerURL;
+
+    @Column(name = "TRAILER_URL")
+    private String posterURL;
 
     // Độ dài của movie
     @Column(name = "TIME", length = 255)
