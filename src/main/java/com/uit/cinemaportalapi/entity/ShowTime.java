@@ -1,7 +1,7 @@
 package com.uit.cinemaportalapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class ShowTime {
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "seat", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "showTime", cascade = CascadeType.ALL)
     private List<Seat> seats;
 
     @ManyToOne(fetch = FetchType.LAZY)

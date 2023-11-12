@@ -1,9 +1,9 @@
 package com.uit.cinemaportalapi.entity;
-
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class Screen {
     @Column(name = "SCREEN_CODE", length = 255)
     private String ScreenCode;
 
-    @Column(name = "SCREEN_CODE", length = 255, columnDefinition = "default '2D'")
+    @Column(name = "TYPE_SCEEN", length = 255)
     private String typeScreen;
 
     @Column(name = "NUMBER_OF_NORMAL_SEAT", length = 3)

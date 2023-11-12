@@ -1,6 +1,6 @@
 package com.uit.cinemaportalapi.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,7 @@ public class Movie {
     @Column(name = "TRAILER_URL")
     private String trailerURL;
 
-    @Column(name = "TRAILER_URL")
+    @Column(name = "POSTER_URL")
     private String posterURL;
 
     // Độ dài của movie
