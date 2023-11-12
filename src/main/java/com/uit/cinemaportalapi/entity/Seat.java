@@ -23,8 +23,8 @@ public class Seat {
     @Column(name = "NUMBER", length = 2)
     private Integer number;
 
-    @Column(name = "ROW", length = 1)
-    private String row;
+    @Column(name = "SEAT_ROW", length = 1)
+    private Integer row;
 
     @Column(name = "BOOKED", length = 1)
     private Boolean isBooked;
