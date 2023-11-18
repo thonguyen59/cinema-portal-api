@@ -2,9 +2,9 @@ package com.uit.cinemaportalapi.entity;
 
 
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor
@@ -31,6 +31,7 @@ public class Seat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHOW_TIME_ID")
+    @JsonIgnore
     private ShowTime showTime;
 
     @ManyToOne(fetch = FetchType.LAZY)

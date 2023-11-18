@@ -2,14 +2,16 @@ package com.uit.cinemaportalapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -22,7 +24,7 @@ public class ShowTime {
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "showTime", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "showTime", cascade = CascadeType.ALL)
     private List<Seat> seats;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -54,5 +56,14 @@ public class ShowTime {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "LAST_UPDATED_DATE")
     private Date lastUpdatedDate;
+
+    @Override
+    public String toString() {
+        return "ShowTime{" +
+                "id=" + id +
+                ", startTime=" + startTime +
+                // ... other fields ...
+                '}';
+    }
 
 }
