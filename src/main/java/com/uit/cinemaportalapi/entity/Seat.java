@@ -32,7 +32,7 @@ public class Seat {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHOW_TIME_ID")
     @JsonIgnore
-    private ShowTime showTime;
+    private ShowTime showtime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TICKET_ID")

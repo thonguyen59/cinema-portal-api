@@ -24,11 +24,13 @@ public class ShowTime {
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "showTime", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "showtime", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Seat> seats;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CINEMA_ID")
+    @JsonIgnore
     private Cinema cinema;
 
     @OneToOne(cascade = CascadeType.ALL)

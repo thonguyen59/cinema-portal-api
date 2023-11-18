@@ -6,5 +6,5 @@ import com.uit.cinemaportalapi.payload.dto.SeatDTO;
 import java.util.List;
 
 public interface SeatService {
-    List<Seat> getSeatByShowTime(Long showTimeID);
+    List<Seat> getSeatByShowTime(Long showtimeID);
 }
