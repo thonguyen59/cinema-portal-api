@@ -1,6 +1,7 @@
 package com.uit.cinemaportalapi.entity;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,6 +50,9 @@ public class Movie {
 
     @Column(name = "CAST", length = 255)
     private String cast;
+
+    @Column(name= "ENABLE")
+    private boolean enable;
 
     @Column(name = "RELEASE_DATE", length = 255)
     private String releaseDate;

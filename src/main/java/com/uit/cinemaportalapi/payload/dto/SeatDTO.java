@@ -1,7 +1,5 @@
 package com.uit.cinemaportalapi.payload.dto;
 
-import com.uit.cinemaportalapi.entity.ShowTime;
-import com.uit.cinemaportalapi.entity.Ticket;
 
 public class SeatDTO {
     private Long id;

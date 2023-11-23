@@ -1,9 +1,11 @@
 package com.uit.cinemaportalapi.entity;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @AllArgsConstructor

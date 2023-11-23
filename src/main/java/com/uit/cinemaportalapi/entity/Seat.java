@@ -1,7 +1,7 @@
 package com.uit.cinemaportalapi.entity;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
