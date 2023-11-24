@@ -3,14 +3,11 @@
 Danh sách API cần làm:
 
 API-GET
--Danh sách phim đang chiếu:
+-Danh sách phim đang chiếu và sắp chiếu theo ngày sắp chiếu :
     Input: ngày hiện tại:
-    Return: thông tin Movie
+    Return: thông tin Movie  // truee ,
 
--Danh sách phim đang chiếu:
-    Input: ngày hiện tại:
-    Return: thông tin Movie
-
+// nâng cao
 -Danh sách ShowTime của phim:
     Input: ID của Movie
     Return: Thông tin ShowTime.

@@ -2,18 +2,18 @@ package com.uit.cinemaportalapi.repository;
 
 import com.uit.cinemaportalapi.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Long , Movie> {
+public interface MovieRepository extends JpaRepository<Movie , Long> {
+    List<Movie> findAllByEnableIsTrueAndReleaseDateGreaterThanEqualOrderByReleaseDateAsc(Date currentDate);
 
-    @Query(value = "SELECT u FROM MOVIE WHERE u.enable = true" ,nativeQuery = true )
-    List<Movie> findAllMovieEnable ();
+    List<Movie>  findAllByEnableIsTrue();
 
-    List<Movie> findAllByEnableIsTrue();
+    List<Movie> findAllByEnableIsTrueAndReleaseDateOrderByReleaseDate(Date currentDate);
 
 
 

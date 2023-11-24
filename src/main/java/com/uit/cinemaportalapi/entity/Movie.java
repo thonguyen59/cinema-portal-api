@@ -1,10 +1,13 @@
 package com.uit.cinemaportalapi.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -52,8 +55,10 @@ public class Movie {
     private String cast;
 
     @Column(name= "ENABLE")
-    private boolean enable;
+    private Boolean enable;
 
-    @Column(name = "RELEASE_DATE", length = 255)
-    private String releaseDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT+7")
+    @Column(name = "RELEASE_DATE")
+    private Date releaseDate;
 }
+//
