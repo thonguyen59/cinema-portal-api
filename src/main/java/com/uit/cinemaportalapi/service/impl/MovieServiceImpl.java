@@ -5,11 +5,10 @@ import com.uit.cinemaportalapi.entity.Movie;
 import com.uit.cinemaportalapi.exception.BadRequestException;
 import com.uit.cinemaportalapi.repository.MovieRepository;
 import com.uit.cinemaportalapi.service.MovieService;
-import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,7 +19,6 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> findAllByEnableIsTrue() {
         try {
-            Date currentDate = new Date();
             return movieRepository.findAllByEnableIsTrue();
         } catch (Exception e) {
             throw new BadRequestException("Can not find Movie: " + e.getMessage());
@@ -30,8 +28,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> findAllMovieComingSon() {
         try {
-            Date currentDate = new Date();
-
+            LocalDate currentDate = LocalDate.now();
             return movieRepository.findAllByEnableIsTrueAndReleaseDate(currentDate);
         } catch (Exception e) {
             throw new BadRequestException("Can not find Movie: " + e.getMessage());
