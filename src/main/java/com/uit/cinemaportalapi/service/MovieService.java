@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface MovieService {
     List<Movie> findAllByEnableIsTrue();
     List<Movie> findAllMovieComingSon();
-    List<Movie> findAllMovieNowShowing();
+
 }

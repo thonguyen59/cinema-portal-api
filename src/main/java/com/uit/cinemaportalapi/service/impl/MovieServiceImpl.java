@@ -31,22 +31,11 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> findAllMovieComingSon() {
         try {
             Date currentDate = new Date();
-            return movieRepository.findAllByEnableIsTrueAndReleaseDateGreaterThanEqualOrderByReleaseDateAsc(currentDate);
+
+            return movieRepository.findAllByEnableIsTrueAndReleaseDate(currentDate);
         } catch (Exception e) {
             throw new BadRequestException("Can not find Movie: " + e.getMessage());
         }
     }
 
-    @Override
-    public List<Movie> findAllMovieNowShowing() {
-
-        try {
-            Date currentDate = new Date();
-
-
-            return movieRepository.findAllByEnableIsTrueAndReleaseDateOrderByReleaseDate(currentDate);
-        } catch (Exception e) {
-            throw new BadRequestException("Can not find Movie: " + e.getMessage());
-        }
-    }
 }
