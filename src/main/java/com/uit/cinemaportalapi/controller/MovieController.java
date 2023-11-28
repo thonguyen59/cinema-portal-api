@@ -13,14 +13,16 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/movies")
 public class MovieController {
+
+
     @Autowired
-    private MovieService movieService;
+    MovieService movieService;
 
     @GetMapping("/enable")
     ResponseEntity<List<Movie>> findAllByEnableIsTrue (){
         return ResponseEntity.ok(movieService.findAllByEnableIsTrue());
     }
-    @GetMapping("/coming-son")
+    @GetMapping("/coming-soon")
     ResponseEntity<List<Movie>> findAllMovieComingSon(){
         return ResponseEntity.ok(movieService.findAllMovieComingSon());
     }

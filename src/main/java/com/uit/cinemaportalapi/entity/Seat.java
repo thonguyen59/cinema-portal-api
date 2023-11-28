@@ -36,5 +36,9 @@ public class Seat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TICKET_ID")
+    @JsonIgnore
     private Ticket ticket;
+
+
+
 }

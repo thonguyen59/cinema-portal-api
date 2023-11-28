@@ -1,11 +1,6 @@
 *Làm ròi thì xóa ạ ^.^
 
-Danh sách API cần làm:
 
-API-GET
--Danh sách phim đang chiếu và sắp chiếu theo ngày sắp chiếu :
-    Input: ngày hiện tại:
-    Return: thông tin Movie  // truee ,
 
 // nâng cao
 -Danh sách ShowTime của phim:

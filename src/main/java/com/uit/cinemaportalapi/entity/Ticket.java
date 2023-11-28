@@ -18,6 +18,7 @@ import java.util.List;
 @Data
 @Table(name = "TICKET")
 public class Ticket {
+
     @Id
     @GeneratedValue(generator = "TICKET_ID_GENERATOR")
     @Column(name = "ID", updatable = false, nullable = false)
