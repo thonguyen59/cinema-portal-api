@@ -3,19 +3,18 @@ package com.uit.cinemaportalapi.controller;
 
 import com.uit.cinemaportalapi.entity.User;
 import com.uit.cinemaportalapi.payload.ResponseObject;
+import com.uit.cinemaportalapi.payload.dto.UserDTO;
 import com.uit.cinemaportalapi.service.UserService;
 import com.uit.cinemaportalapi.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1")
+@RequestMapping(path = "/user")
 public class UserController {
 
     @Autowired
@@ -28,5 +27,15 @@ public class UserController {
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body( new ResponseObject("404", null )):
                 ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("200",users));
 
+    }
+    @PostMapping("/register")
+    ResponseEntity<?> register(@RequestBody UserDTO userDTO){
+        return  ResponseEntity.ok( userService.registerUser(userDTO));
+    }
+
+    @PostMapping("/login")
+    ResponseEntity<?> login(@RequestBody UserDTO userDTO){
+
+        return  ResponseEntity.ok(userService.Login(userDTO));
     }
 }

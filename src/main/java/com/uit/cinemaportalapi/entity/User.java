@@ -3,6 +3,7 @@ package com.uit.cinemaportalapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class User {
     @Column(name = "USERNAME", length = 32)
     private String username;
 
-    @Column(name = "PASSWORD", length = 32)
+    @Column(name = "PASSWORD" , length = 500)
     private String password;
 
     @Column(name = "PASSWORD_REMINDER_TOKEN", length = 128)
@@ -33,6 +34,10 @@ public class User {
 
     @Column(name = "PASSWORD_REMINDER_EEXPIRE")
     private Date passReminderExpire;
+
+    @Email
+    @Column(name = "EMAIL")
+    private String email;
 
     @Column(name = "Enabled")
     private Boolean enabled;
