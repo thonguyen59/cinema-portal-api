@@ -2,6 +2,7 @@ package com.uit.cinemaportalapi.service.impl;
 
 
 import com.uit.cinemaportalapi.entity.User;
+import com.uit.cinemaportalapi.payload.ResponseObject;
 import com.uit.cinemaportalapi.payload.dto.UserDTO;
 import com.uit.cinemaportalapi.repository.UserRepository;
 import com.uit.cinemaportalapi.service.UserService;
@@ -27,17 +28,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean registerUser(UserDTO dto) {
+    public ResponseObject registerUser(UserDTO dto) {
 
         if (userRepository.existsByUsername(dto.getUsername())) {
-            throw new RuntimeException("Username already exists");
+            return new ResponseObject("fail","Username already exists");
         }
 
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email already exists");
-        }
-        if (!dto.getPassword().equals(dto.getPasswordConfirm())) {
-            throw new RuntimeException("Confirm password doesn't match");
+            return new ResponseObject("fail","Email already exists");
         }
 
         User newUser = new User();
@@ -47,20 +45,20 @@ public class UserServiceImpl implements UserService {
         newUser.setEmail(dto.getEmail());
         newUser.setCreateDate(new Date());
         userRepository.save(newUser);
-        return true;
+        return new ResponseObject("success","Register success");
     }
 
     @Override
-    public Boolean Login(UserDTO dto) {
+    public ResponseObject Login(UserDTO dto) {
         User user = userRepository.findByUsername(dto.getUsername());
         if (user == null) {
-            throw new RuntimeException("Username doesn't exist");
+           return  new ResponseObject("fail","can't found user :" + dto.getUsername());
         }
 
         if (passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
-            return true;
+            return  new ResponseObject( "success",user);
         }
-        throw new RuntimeException("Incorrect password");
+        return  new ResponseObject( " fail",null);
     }
 
 

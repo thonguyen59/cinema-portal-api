@@ -30,12 +30,13 @@ public class UserController {
     }
     @PostMapping("/register")
     ResponseEntity<?> register(@RequestBody UserDTO userDTO){
-        return  ResponseEntity.ok( userService.registerUser(userDTO));
+        ResponseObject data  = userService.registerUser(userDTO);
+        return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
     @PostMapping("/login")
-    ResponseEntity<?> login(@RequestBody UserDTO userDTO){
-
-        return  ResponseEntity.ok(userService.Login(userDTO));
+    ResponseEntity<ResponseObject> login(@RequestBody UserDTO userDTO){
+        ResponseObject data  = userService.Login(userDTO);
+        return new ResponseEntity<>(data,HttpStatus.OK  );
     }
 }

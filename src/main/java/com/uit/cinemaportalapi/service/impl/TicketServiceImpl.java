@@ -50,7 +50,9 @@ public class TicketServiceImpl implements TicketService {
             ticketInfoDTO.setCinemaName(cinema.getName());
             ticketInfoDTO.setBookingNumber(ticket.getBookingNumber());
             ticketInfoDTO.setPosterURL(movie.getPosterURL());
+
             ticketInfoDTO.setScreenName(showTime.getCinema().getName());
+
             ticketInfoDTO.setSubtotal(ticket.getSubtotal());
             ticketInfoDTO.setRating(movie.getRating());
 
