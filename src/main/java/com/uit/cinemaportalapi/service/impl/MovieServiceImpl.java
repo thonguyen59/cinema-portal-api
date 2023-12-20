@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -33,6 +34,19 @@ public class MovieServiceImpl implements MovieService {
         } catch (Exception e) {
             throw new BadRequestException("Can not find Movie: " + e.getMessage());
         }
+    }
+
+    @Override
+    public Movie findMovieByID(Long id) {
+        try {
+            Optional<Movie> movie =  movieRepository.findById(id);
+            if (movie.isPresent()) {
+                return movie.get();
+            }
+        } catch (Exception e) {
+            throw new BadRequestException("Can not find Movie by id: " + e.getMessage());
+        }
+        return null;
     }
 
 }

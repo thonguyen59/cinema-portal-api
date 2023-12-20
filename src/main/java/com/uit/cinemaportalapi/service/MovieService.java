@@ -9,4 +9,6 @@ public interface MovieService {
     List<Movie> findAllByEnableIsTrue();
     List<Movie> findAllMovieComingSon();
 
+    Movie findMovieByID(Long id);
+
 }
