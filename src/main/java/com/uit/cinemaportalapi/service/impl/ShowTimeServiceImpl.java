@@ -1,12 +1,13 @@
 package com.uit.cinemaportalapi.service.impl;
 
+import com.uit.cinemaportalapi.entity.Cinema;
 import com.uit.cinemaportalapi.entity.Movie;
 import com.uit.cinemaportalapi.entity.Seat;
 import com.uit.cinemaportalapi.entity.ShowTime;
 import com.uit.cinemaportalapi.exception.BadRequestException;
 import com.uit.cinemaportalapi.payload.CreateShowTimeRequest;
-import com.uit.cinemaportalapi.repository.SeatRepository;
 import com.uit.cinemaportalapi.repository.ShowTimeRepository;
+import com.uit.cinemaportalapi.service.CinemaService;
 import com.uit.cinemaportalapi.service.MovieService;
 import com.uit.cinemaportalapi.service.SeatService;
 import com.uit.cinemaportalapi.service.ShowTimeService;
@@ -28,11 +29,13 @@ public class ShowTimeServiceImpl implements ShowTimeService {
     @Autowired
     SeatService seatService;
 
+    @Autowired
+    CinemaService cinemaService;
 
     @Override
-    public List<ShowTime> getShowTimeByID(Long ID) {
+    public List<ShowTime> getShowTimeByID(Long id) {
         try {
-            return showtimeRepository.findAllById(Collections.singleton(ID));
+            return showtimeRepository.findAllById(Collections.singleton(id));
         } catch (Exception e) {
             throw new BadRequestException("Can not find seats for show time: " + e.getMessage());
         }
@@ -59,7 +62,10 @@ public class ShowTimeServiceImpl implements ShowTimeService {
             Movie movie = movieService.findMovieByID(request.getMovieID());
             showTime.setMovie(movie);
 
-            showTime.setCinemaName(request.getCinemaName());
+            Cinema cinema = cinemaService.getCinemaByID(request.getCinemaID());
+
+            showTime.setCinemaName(cinema.getName());
+            showTime.setCinema(cinema);
 
             ShowTime showtimeSaved = showtimeRepository.save(showTime);
 

@@ -19,8 +19,8 @@ public class ShowTimeController {
     private ShowTimeService showtimeService;
 
     @GetMapping("/{showtimeID}")
-    ResponseEntity<List<ShowTime>> getShowTime(@PathVariable(name = "showtimeID") String showtimeID){
-        return ResponseEntity.ok(showtimeService.getShowTimeByID(Long.valueOf(showtimeID)));
+    ResponseEntity<List<ShowTime>> getShowTime(@PathVariable(name = "showtimeID") Long showtimeID){
+        return ResponseEntity.ok(showtimeService.getShowTimeByID(showtimeID));
     }
 
     @GetMapping("/movie/{movieID}")

@@ -28,9 +28,8 @@ public class ShowTime {
     @JsonIgnore
     private List<Seat> seats;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CINEMA_ID")
-    @JsonIgnore
     private Cinema cinema;
 
     @Column(name = "CINEMA_NAME")
