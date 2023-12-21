@@ -33,8 +33,12 @@ public class ShowTime {
     @JsonIgnore
     private Cinema cinema;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id", referencedColumnName = "id")
+    @Column(name = "CINEMA_NAME")
+    private String cinemaName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MOVIE_ID")
+    @JsonIgnore
     private Movie movie;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "GMT+7")

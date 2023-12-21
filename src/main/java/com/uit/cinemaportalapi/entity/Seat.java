@@ -24,7 +24,7 @@ public class Seat {
     private Integer number;
 
     @Column(name = "SEAT_ROW", length = 1)
-    private Integer row;
+    private String row;
 
     @Column(name = "BOOKED", length = 1)
     private Boolean isBooked;
