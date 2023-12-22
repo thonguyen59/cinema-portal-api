@@ -35,6 +35,9 @@ public class ShowTime {
     @Column(name = "CINEMA_NAME")
     private String cinemaName;
 
+    @Column(name = "SCREEN")
+    private String screen;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MOVIE_ID")
     @JsonIgnore
