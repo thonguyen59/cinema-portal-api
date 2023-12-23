@@ -58,6 +58,8 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 
             showTime.setStartTime(request.getStartTime());
             showTime.setEndTime(request.getEndTime());
+            showTime.setScreen(request.getScreen());
+            showTime.setPrice(request.getPrice());
 
             Movie movie = movieService.findMovieByID(request.getMovieID());
             showTime.setMovie(movie);

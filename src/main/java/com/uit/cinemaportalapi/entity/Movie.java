@@ -35,6 +35,9 @@ public class Movie {
     @Column(name = "POSTER_URL")
     private String posterURL;
 
+    @Column(name = "POSTER_HORIZONTAL_URL")
+    private String posterHorizontalURL;
+
     // Độ dài của movie
     @Column(name = "TIME", length = 255)
     private String time;

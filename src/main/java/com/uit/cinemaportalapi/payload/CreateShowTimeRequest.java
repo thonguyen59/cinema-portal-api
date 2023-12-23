@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -16,6 +17,12 @@ public class CreateShowTimeRequest {
 
     @ApiModelProperty(value = "id phim", required = true)
     private Long movieID;
+
+    @ApiModelProperty(value = "số phòng chiếu ", required = true)
+    private String screen;
+
+    @ApiModelProperty(value = "Giá 1 vé", required = true)
+    private BigDecimal price;
 
     @ApiModelProperty(example = "2023-12-01T17:16", value = "ngày bắt đầu chiếu", required = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm", timezone = "GMT+7")

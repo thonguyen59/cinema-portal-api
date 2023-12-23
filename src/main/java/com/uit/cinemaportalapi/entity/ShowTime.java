@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class ShowTime {
 
     @Column(name = "SCREEN")
     private String screen;
+
+    @Column(name = "PRICE")
+    private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MOVIE_ID")

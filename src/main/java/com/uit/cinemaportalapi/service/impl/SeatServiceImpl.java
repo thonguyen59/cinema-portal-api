@@ -40,9 +40,13 @@ public class SeatServiceImpl implements SeatService {
             for (int r = 1; r <= numOfRow; r++) {
                 for (int n = 1; n <= numOfColumn; n++) {
                     Seat seat = new Seat();
-                    seat.setRow(myIntArray[n]);
+                    seat.setRow(myIntArray[r]);
                     seat.setNumber(n);
-                    seat.setType("NORMAL");
+                    if (r <= 8 && r >= 5 && n <= 9 && n >= 4) {
+                        seat.setType("VIP");
+                    } else {
+                        seat.setType("NORMAL");
+                    }
                     seat.setIsBooked(false);
                     seat.setShowtime(showtimeID);
                     seats.add(seat);
