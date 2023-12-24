@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -83,7 +84,17 @@ public class TicketServiceImpl implements TicketService {
         paymentHistoryDTO.setCinemaName(cinema.getName());
         paymentHistoryDTO.setShowDate(showTime.getStartTime());
         paymentHistoryDTO.setShowTime(showTime.getStartTime());
+        paymentHistoryDTO.setPosterURL(movie.getPosterURL());
         paymentHistoryDTO.setEndTime(showTime.getEndTime());
+        paymentHistoryDTO.setBookingNumber(ticket.getBookingNumber());
+        List<String> seatList = new ArrayList<>();
+        for (Seat seat : ticket.getSeats()) {
+            seatList.add(seat.getRow() + seat.getNumber());
+        }
+        String seats = String.join(", ", seatList);
+        paymentHistoryDTO.setSeats(seats);
+        paymentHistoryDTO.setScreen(showTime.getScreen());
+        paymentHistoryDTO.setSubtotal(ticket.getSubtotal());
         return paymentHistoryDTO;
     }
 

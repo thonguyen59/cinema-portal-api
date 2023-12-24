@@ -2,15 +2,14 @@ package com.uit.cinemaportalapi.payload.dto;
 
 
 import com.uit.cinemaportalapi.entity.Seat;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketInfoDTO {

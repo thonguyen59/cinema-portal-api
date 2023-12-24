@@ -9,7 +9,8 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Table(name = "SEAT")
 public class Seat {
     @Id
