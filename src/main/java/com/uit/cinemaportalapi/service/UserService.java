@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUser();
+
     ResponseObject registerUser(UserDTO dto);
 
-      ResponseObject Login(UserDTO dto);
+    ResponseObject Login(UserDTO dto);
 
 }

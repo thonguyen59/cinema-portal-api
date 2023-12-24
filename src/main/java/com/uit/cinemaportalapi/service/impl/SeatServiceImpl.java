@@ -2,10 +2,14 @@ package com.uit.cinemaportalapi.service.impl;
 
 import com.uit.cinemaportalapi.entity.Seat;
 import com.uit.cinemaportalapi.entity.ShowTime;
+import com.uit.cinemaportalapi.entity.Ticket;
 import com.uit.cinemaportalapi.exception.BadRequestException;
+import com.uit.cinemaportalapi.payload.BookingSeatsRequest;
 import com.uit.cinemaportalapi.repository.SeatRepository;
 import com.uit.cinemaportalapi.service.SeatService;
+import com.uit.cinemaportalapi.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +20,9 @@ public class SeatServiceImpl implements SeatService {
 
     @Autowired
     SeatRepository seatRepository;
+
+    @Autowired
+    TicketService ticketService;
 
     @Override
     public List<Seat> getSeatByShowTime(Long showtimeID) {
@@ -66,6 +73,24 @@ public class SeatServiceImpl implements SeatService {
             return seats;
         } catch (Exception e) {
             throw new BadRequestException("Can not create seats for show time: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Seat> bookingSeats(BookingSeatsRequest request) {
+        try {
+            List<Seat> seats = seatRepository.findAllById(request.getSeatIDs());
+
+            Ticket ticket = ticketService.createTicket(seats, request.getUserID(), request.getSubtotal());
+
+            for (Seat seat : seats) {
+                seat.setTicket(ticket);
+                seat.setIsBooked(true);
+            }
+
+            return seatRepository.saveAll(seats);
+        } catch (Exception e) {
+            throw new BadRequestException("Can not booking seats: " + e.getMessage());
         }
     }
 }

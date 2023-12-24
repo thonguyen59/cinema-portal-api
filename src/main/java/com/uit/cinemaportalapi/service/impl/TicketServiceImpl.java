@@ -1,20 +1,20 @@
 package com.uit.cinemaportalapi.service.impl;
 
-import com.uit.cinemaportalapi.entity.Cinema;
-import com.uit.cinemaportalapi.entity.Movie;
-import com.uit.cinemaportalapi.entity.ShowTime;
-import com.uit.cinemaportalapi.entity.Ticket;
+import com.uit.cinemaportalapi.entity.*;
 import com.uit.cinemaportalapi.exception.BadRequestException;
 import com.uit.cinemaportalapi.payload.dto.PaymentHistoryDTO;
 import com.uit.cinemaportalapi.payload.dto.TicketInfoDTO;
 import com.uit.cinemaportalapi.repository.SeatRepository;
 import com.uit.cinemaportalapi.repository.ShowTimeRepository;
 import com.uit.cinemaportalapi.repository.TicketRepository;
+import com.uit.cinemaportalapi.repository.UserRepository;
 import com.uit.cinemaportalapi.service.TicketService;
+import com.uit.cinemaportalapi.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,6 +30,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private SeatRepository seatRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Transactional
     @Override
@@ -64,7 +67,7 @@ public class TicketServiceImpl implements TicketService {
     @Transactional
     @Override
     public List<PaymentHistoryDTO> getTicketsByUserId(Long userId) {
-        List<Ticket> tickets = ticketRepository.findByUserId(userId);
+        List<Ticket> tickets = ticketRepository.findAllByUserId(userId);
 
         return tickets.stream()
                 .map(this::mapToTicketInfoDTO)
@@ -82,5 +85,19 @@ public class TicketServiceImpl implements TicketService {
         paymentHistoryDTO.setShowTime(showTime.getStartTime());
         paymentHistoryDTO.setEndTime(showTime.getEndTime());
         return paymentHistoryDTO;
+    }
+
+    @Override
+    public Ticket createTicket(List<Seat> seats, Long userId, BigDecimal subtotal) {
+        Ticket ticket = new Ticket();
+        Optional<User> user= userRepository.findById(userId);
+
+        if (user.isPresent()) {
+            ticket.setSeats(seats);
+            ticket.setUser(user.get());
+            ticket.setSubtotal(subtotal);
+        }
+
+        return ticketRepository.save(ticket);
     }
 }

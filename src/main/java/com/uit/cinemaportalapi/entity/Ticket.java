@@ -1,6 +1,7 @@
 package com.uit.cinemaportalapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class Ticket {
     private String qrCode;
 
     @Column(name = "BOOKING_NUMBER", length = 32)
+    @GeneratedValue(generator = "TICKET_BOOKING_NUMBER_GENERATOR")
     private String bookingNumber;
 
     @Column(name = "SUBTOTAL", length = 9)

@@ -26,7 +26,6 @@ public class ShowTime {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "showtime", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Seat> seats;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -42,7 +41,7 @@ public class ShowTime {
     @Column(name = "PRICE")
     private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "MOVIE_ID")
     @JsonIgnore
     private Movie movie;
@@ -68,14 +67,4 @@ public class ShowTime {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "LAST_UPDATED_DATE")
     private Date lastUpdatedDate;
-
-    @Override
-    public String toString() {
-        return "ShowTime{" +
-                "id=" + id +
-                ", startTime=" + startTime +
-                // ... other fields ...
-                '}';
-    }
-
 }

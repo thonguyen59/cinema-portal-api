@@ -37,6 +37,6 @@ public class UserController {
     @PostMapping("/login")
     ResponseEntity<ResponseObject> login(@RequestBody UserDTO userDTO){
         ResponseObject data  = userService.Login(userDTO);
-        return new ResponseEntity<>(data,HttpStatus.OK  );
+        return new ResponseEntity<>(data,HttpStatus.OK);
     }
 }

@@ -2,6 +2,7 @@ package com.uit.cinemaportalapi.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,8 @@ public class User {
     @Column(name = "USERNAME", length = 32)
     private String username;
 
-    @Column(name = "PASSWORD" , length = 500)
+    @JsonIgnore
+    @Column(name = "PASSWORD" , length = 2000)
     private String password;
 
     @Column(name = "PASSWORD_REMINDER_TOKEN", length = 128)

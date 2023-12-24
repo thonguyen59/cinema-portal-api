@@ -29,16 +29,13 @@ public class Seat {
     @Column(name = "BOOKED", length = 1)
     private Boolean isBooked;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SHOW_TIME_ID")
     @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "SHOW_TIME_ID")
     private ShowTime showtime;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TICKET_ID")
-    @JsonIgnore
     private Ticket ticket;
-
-
-
 }
