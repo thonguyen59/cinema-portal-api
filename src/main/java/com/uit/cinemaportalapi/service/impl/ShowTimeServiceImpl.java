@@ -14,6 +14,7 @@ import com.uit.cinemaportalapi.service.ShowTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,7 +46,8 @@ public class ShowTimeServiceImpl implements ShowTimeService {
     public List<ShowTime> getShowTimeByMovie(Long movieID) {
         try {
             Movie movie = movieService.findMovieByID(movieID);
-            return showtimeRepository.findAllByMovie(movie);
+            LocalDate currentDate = LocalDate.now();
+            return showtimeRepository.findAllByMovieAndEndTime(movie.getId(), currentDate);
         } catch (Exception e) {
             throw new BadRequestException("Can not find showtimes: " + e.getMessage());
         }

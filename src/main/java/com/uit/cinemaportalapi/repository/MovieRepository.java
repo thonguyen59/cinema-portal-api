@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie , Long> {
 
-    @Query(value = "SELECT * FROM MOVIE WHERE ENABLE = true AND RELEASE_DATE >= :currentDate ORDER BY RELEASE_DATE ASC ", nativeQuery = true)
-    List<Movie> findAllByEnableIsTrueAndReleaseDate(LocalDate currentDate);
+    @Query(value = "SELECT * FROM MOVIE WHERE RELEASE_DATE >= :currentDate ORDER BY RELEASE_DATE ASC ", nativeQuery = true)
+    List<Movie> findAllByReleaseDate(LocalDate currentDate);
 
-    List<Movie>  findAllByEnableIsTrue();
+    List<Movie> findAllByEnableIsTrue();
 
 
 

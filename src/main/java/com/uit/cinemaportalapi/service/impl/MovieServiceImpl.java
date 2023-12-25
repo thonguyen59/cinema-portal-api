@@ -18,7 +18,7 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MovieRepository movieRepository;
     @Override
-    public List<Movie> findAllByEnableIsTrue() {
+    public List<Movie> getMovieIsShowing() {
         try {
             return movieRepository.findAllByEnableIsTrue();
         } catch (Exception e) {
@@ -30,7 +30,7 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> findAllMovieComingSon() {
         try {
             LocalDate currentDate = LocalDate.now();
-            return movieRepository.findAllByEnableIsTrueAndReleaseDate(currentDate);
+            return movieRepository.findAllByReleaseDate(currentDate);
         } catch (Exception e) {
             throw new BadRequestException("Can not find Movie: " + e.getMessage());
         }

@@ -18,8 +18,8 @@ public class MovieController {
     MovieService movieService;
 
     @GetMapping("/enable")
-    ResponseEntity<List<Movie>> findAllByEnableIsTrue (){
-        return ResponseEntity.ok(movieService.findAllByEnableIsTrue());
+    ResponseEntity<List<Movie>> getMovieIsShowing (){
+        return ResponseEntity.ok(movieService.getMovieIsShowing());
     }
     @GetMapping("/coming-soon")
     ResponseEntity<List<Movie>> findAllMovieComingSon(){
