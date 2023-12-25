@@ -1,7 +1,6 @@
 package com.uit.cinemaportalapi.payload.dto;
 
 
-import com.uit.cinemaportalapi.entity.Seat;
 import lombok.*;
 
 import java.math.BigDecimal;

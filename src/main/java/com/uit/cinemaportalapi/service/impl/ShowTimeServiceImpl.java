@@ -15,8 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
+
 
 @Service
 public class ShowTimeServiceImpl implements ShowTimeService {
@@ -46,8 +49,10 @@ public class ShowTimeServiceImpl implements ShowTimeService {
     public List<ShowTime> getShowTimeByMovie(Long movieID) {
         try {
             Movie movie = movieService.findMovieByID(movieID);
-            LocalDate currentDate = LocalDate.now();
-            return showtimeRepository.findAllByMovieAndEndTime(movie.getId(), currentDate);
+            LocalDateTime currentTime = LocalDateTime.now();
+            System.out.println(currentTime + "Time");
+
+            return showtimeRepository.findAllByMovieAndStartTime(movie.getId(), currentTime);
         } catch (Exception e) {
             throw new BadRequestException("Can not find showtimes: " + e.getMessage());
         }

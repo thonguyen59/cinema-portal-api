@@ -1,5 +1,6 @@
 package com.uit.cinemaportalapi.controller;
 
+
 import com.uit.cinemaportalapi.entity.Movie;
 import com.uit.cinemaportalapi.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
