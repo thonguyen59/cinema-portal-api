@@ -1,5 +1,9 @@
 package com.uit.cinemaportalapi.service.impl;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.uit.cinemaportalapi.entity.Seat;
 import com.uit.cinemaportalapi.entity.ShowTime;
 import com.uit.cinemaportalapi.entity.Ticket;
@@ -9,10 +13,11 @@ import com.uit.cinemaportalapi.repository.SeatRepository;
 import com.uit.cinemaportalapi.service.SeatService;
 import com.uit.cinemaportalapi.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -87,6 +92,15 @@ public class SeatServiceImpl implements SeatService {
                 seat.setTicket(ticket);
                 seat.setIsBooked(true);
             }
+
+            String content = ticket.toString();
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, 350, 350);
+
+            ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
+            MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream);
+            byte[] pngData = Base64.getEncoder().encode(pngOutputStream.toByteArray());
+            ticket.setQrCode(new String(pngData));
 
             return seatRepository.saveAll(seats);
         } catch (Exception e) {

@@ -24,4 +24,5 @@ public class PaymentHistoryDTO {
     private String Screen;
     private BigDecimal subtotal;
     private String seats;
+    private String qrCode;
 }

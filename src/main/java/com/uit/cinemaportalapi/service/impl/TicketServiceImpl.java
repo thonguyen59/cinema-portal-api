@@ -95,6 +95,7 @@ public class TicketServiceImpl implements TicketService {
         paymentHistoryDTO.setSeats(seats);
         paymentHistoryDTO.setScreen(showTime.getScreen());
         paymentHistoryDTO.setSubtotal(ticket.getSubtotal());
+        paymentHistoryDTO.setQrCode(ticket.getQrCode());
         return paymentHistoryDTO;
     }
 
