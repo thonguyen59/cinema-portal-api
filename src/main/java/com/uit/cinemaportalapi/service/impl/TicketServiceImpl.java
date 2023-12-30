@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -108,6 +110,14 @@ public class TicketServiceImpl implements TicketService {
             ticket.setSeats(seats);
             ticket.setUser(user.get());
             ticket.setSubtotal(subtotal);
+            LocalDateTime now = LocalDateTime.now();
+
+            String bookingNumber = Integer.toString(now.getYear()) + Integer.toString(now.getMonthValue())  + Integer.toString(now.getDayOfMonth());
+
+            for (Seat seat : seats) {
+                bookingNumber = bookingNumber + seat.getRow() + Integer.toString(seat.getNumber());
+            }
+            ticket.setBookingNumber(bookingNumber);
         }
 
         return ticketRepository.save(ticket);

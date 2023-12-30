@@ -20,7 +20,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getMovieIsShowing() {
         try {
-            return movieRepository.findAllByEnableIsTrue();
+            return movieRepository.findAllByEnableIsTrueOrderByReleaseDate();
         } catch (Exception e) {
             throw new BadRequestException("Can not find Movie: " + e.getMessage());
         }

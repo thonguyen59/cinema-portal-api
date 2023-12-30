@@ -12,5 +12,6 @@ public interface ShowTimeService {
     List<ShowTime> getShowTimeByMovie(Long movieID);
 
     ShowTime createShowTimeByMovie(CreateShowTimeRequest request);
+    List<ShowTime> createShowTimeByMovies(List<CreateShowTimeRequest> request);
 
 }

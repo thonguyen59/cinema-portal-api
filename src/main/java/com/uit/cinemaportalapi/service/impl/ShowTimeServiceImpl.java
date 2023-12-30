@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,5 +88,16 @@ public class ShowTimeServiceImpl implements ShowTimeService {
         } catch (Exception e) {
             throw new BadRequestException("Can not find showtimes: " + e.getMessage());
         }
+    }
+
+    @Override
+    public List<ShowTime> createShowTimeByMovies(List<CreateShowTimeRequest> request) {
+        List<ShowTime> response = new ArrayList<>();
+        for (CreateShowTimeRequest createShowTimeRequest : request) {
+            ShowTime showtime = createShowTimeByMovie(createShowTimeRequest);
+            response.add(showtime);
+        }
+
+        return response;
     }
 }

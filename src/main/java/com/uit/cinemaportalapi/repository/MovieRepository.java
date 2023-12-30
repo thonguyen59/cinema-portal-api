@@ -15,7 +15,7 @@ public interface MovieRepository extends JpaRepository<Movie , Long> {
     @Query(value = "SELECT * FROM MOVIE WHERE RELEASE_DATE >= :currentDate ORDER BY RELEASE_DATE ASC ", nativeQuery = true)
     List<Movie> findAllByReleaseDate(LocalDate currentDate);
 
-    List<Movie> findAllByEnableIsTrue();
+    List<Movie> findAllByEnableIsTrueOrderByReleaseDate();
 
 
 

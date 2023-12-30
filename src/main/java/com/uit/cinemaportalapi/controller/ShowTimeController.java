@@ -32,4 +32,9 @@ public class ShowTimeController {
     ResponseEntity<ShowTime> createShowTimeByMovie(@RequestBody CreateShowTimeRequest request){
         return ResponseEntity.ok(showtimeService.createShowTimeByMovie(request));
     }
+
+    @PostMapping("/movies")
+    ResponseEntity<List<ShowTime>> createShowTimeByMovies(@RequestBody List<CreateShowTimeRequest> request){
+        return ResponseEntity.ok(showtimeService.createShowTimeByMovies(request));
+    }
 }
